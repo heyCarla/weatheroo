@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum LocationName: String {
+enum City: String {
     
     case Sydney     = "Sydney"
     case Melbourne  = "Melbourne"
@@ -18,25 +18,19 @@ enum LocationName: String {
     case Hobart     = "Hobart"
     case Darwin     = "Darwin"
     
-    static let allValues: [LocationName] = [.Sydney, .Melbourne, .Brisbane, .Adelaide, .Perth, .Hobart, .Darwin]
+    static let allValues: [City] = [.Sydney, .Melbourne, .Brisbane, .Adelaide, .Perth, .Hobart, .Darwin]
 }
 
 struct Location {
     
-    var name: LocationName
+    var name: City
     var isFavourite: Bool
-    let humidityAsPercent: Int
-    let windSpeedInKm: Int
-    let barometricPressure: Int
     
-    init(name: LocationName, isFavourite: Bool, humidity: Int, windSpeed: Int, pressure: Int) {
+    init(name: City, isFavourite: Bool) {
      
         self.name               = name
         self.isFavourite        = isFavourite
-        self.humidityAsPercent  = humidity
-        self.windSpeedInKm      = windSpeed
-        self.barometricPressure = pressure
-    }
+           }
     
     mutating func updateFavouriteState() {
         

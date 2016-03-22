@@ -10,6 +10,8 @@
 		E1A0C7861CA13F6A00CB0CE2 /* WeatherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C7851CA13F6A00CB0CE2 /* WeatherTableView.swift */; };
 		E1A0C7881CA1459500CB0CE2 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A0C7871CA1459500CB0CE2 /* WeatherTableViewCell.swift */; };
 		E1C763781CA17C2100A37107 /* WeatherIconDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C763771CA17C2100A37107 /* WeatherIconDatasource.swift */; };
+		E1C7637A1CA1E30700A37107 /* WeatherooDatasourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C763791CA1E30700A37107 /* WeatherooDatasourceTests.swift */; };
+		E1C7637C1CA1E31800A37107 /* WeatherooModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7637B1CA1E31800A37107 /* WeatherooModelFactoryTests.swift */; };
 		E1DA0A091C9FB5A200455A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DA0A081C9FB5A200455A2F /* AppDelegate.swift */; };
 		E1DA0A0B1C9FB5A200455A2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DA0A0A1C9FB5A200455A2F /* ViewController.swift */; };
 		E1DA0A0E1C9FB5A200455A2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1DA0A0C1C9FB5A200455A2F /* Main.storyboard */; };
@@ -36,6 +38,8 @@
 		E1A0C7851CA13F6A00CB0CE2 /* WeatherTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableView.swift; sourceTree = "<group>"; };
 		E1A0C7871CA1459500CB0CE2 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		E1C763771CA17C2100A37107 /* WeatherIconDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherIconDatasource.swift; sourceTree = "<group>"; };
+		E1C763791CA1E30700A37107 /* WeatherooDatasourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherooDatasourceTests.swift; sourceTree = "<group>"; };
+		E1C7637B1CA1E31800A37107 /* WeatherooModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherooModelFactoryTests.swift; sourceTree = "<group>"; };
 		E1DA0A051C9FB5A200455A2F /* Weatheroo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatheroo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1DA0A081C9FB5A200455A2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1DA0A0A1C9FB5A200455A2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				E1DA0A1D1C9FB5A200455A2F /* WeatherooTests.swift */,
+				E1C763791CA1E30700A37107 /* WeatherooDatasourceTests.swift */,
+				E1C7637B1CA1E31800A37107 /* WeatherooModelFactoryTests.swift */,
 				E1DA0A1F1C9FB5A200455A2F /* Info.plist */,
 			);
 			path = WeatherooTests;
@@ -126,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				E1DA0A2B1C9FB64A00455A2F /* LocationModel.swift */,
-				E1DA0A2D1C9FB67400455A2F /* WeatherConditionsModelFactory.swift */,
 				E1DA0A291C9FB62200455A2F /* WeatherConditionsModel.swift */,
+				E1DA0A2D1C9FB67400455A2F /* WeatherConditionsModelFactory.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -259,6 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1DA0A1E1C9FB5A200455A2F /* WeatherooTests.swift in Sources */,
+				E1C7637C1CA1E31800A37107 /* WeatherooModelFactoryTests.swift in Sources */,
+				E1C7637A1CA1E30700A37107 /* WeatherooDatasourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

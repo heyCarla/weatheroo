@@ -14,6 +14,7 @@ struct WeatherIconDatasource {
     static func imageWithURL(imageURL: NSURL, completion: (UIImage?) -> Void) -> NSURLSessionDownloadTask {
     
         let downloadTask = NSURLSession.sharedSession().downloadTaskWithURL(imageURL) { (dataLocation, response, error) in
+            
             guard let dataLocation = dataLocation,
                 imageData = NSData(contentsOfURL: dataLocation),
                 image = UIImage(data: imageData) else {

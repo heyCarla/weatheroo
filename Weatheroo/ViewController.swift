@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let weatherFactory = LocationModelFactory()
+    private let weatherFactory = WeatherConditionsModelFactory()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
     // MARK: UI Elements
     
-    func displayWeatherTableView() {
+    private func displayWeatherTableView() {
         
         let tableView = WeatherTableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false

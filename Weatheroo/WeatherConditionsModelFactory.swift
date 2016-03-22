@@ -1,5 +1,5 @@
 //
-//  LocationModelFactory.swift
+//  WeatherConditionsModelFactory.swift
 //  Weatheroo
 //
 //  Created by Carla Alexander on 2016-03-21.
@@ -10,11 +10,11 @@ import Foundation
 
 typealias WeatherConditionsParsingCompletion = (conditions: WeatherConditions?) -> Void
 
-struct LocationModelFactory {
+struct WeatherConditionsModelFactory {
     
     func weatherDataForLocation(location: City, completion: WeatherConditionsParsingCompletion) {
         
-        var weatherDatasource = WeatherDatasource()
+        let weatherDatasource = WeatherDatasource()
         weatherDatasource.makeWeatherDataRequest(location) { currentData in
             
             let currentData = currentData

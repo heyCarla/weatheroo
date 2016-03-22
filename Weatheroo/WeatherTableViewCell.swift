@@ -35,15 +35,14 @@ class WeatherTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func updateWithWeatherData(weatherConditions: WeatherConditions?, city: City) {
         imageRequestTask?.cancel()
         
         cityLabel.text          = city.rawValue
-        actualTempLabel.text    = "22C"//"\(weatherConditions?.actualTemp)\u{00B0} C"
-        descriptionLabel.text   = "Partly Cloudy"//"\(weatherConditions?.description)"
-        feelsLikeLabel.text     = "Feels like 20C"//"Feels like \(weatherConditions?.feelsLikeTemp)"
-        precipitationLabel.text = "Prec. 0.0mm"//"Prec. \(weatherConditions?.precipitation)mm"
+        actualTempLabel.text    = "\(weatherConditions?.actualTemp)\u{00B0} C"
+        descriptionLabel.text   = "\(weatherConditions?.description)"
+        feelsLikeLabel.text     = "Feels like \(weatherConditions?.feelsLikeTemp)\u{00B0} C"
+        precipitationLabel.text = "Prec. \(weatherConditions?.precipitation)mm"
         humidityLabel.text      = "\(weatherConditions?.humidityAsPercent)"
         windSpeedLabel.text     = "\(weatherConditions?.windSpeedInKm)km"
         pressureLabel.text      = "\(weatherConditions?.barometricPressure)"

@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weatheroo/WeatherTableViewCell.swift"
-            timestampString = "480377486.082728"
+            timestampString = "480378920.500865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "updateWithWeatherData(_:city:)"
             landmarkType = "5">
          </BreakpointContent>

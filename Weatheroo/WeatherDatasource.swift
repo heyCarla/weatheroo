@@ -26,21 +26,11 @@ struct WeatherDatasource {
 
     // TODO: make/refresh request every 10 minutes
     
-    mutating func makeWeatherDataRequest(location: String, completion: WeatherJSONParsingCompletion) { //-> [String:AnyObject]? {
+    mutating func makeWeatherDataRequest(location: String, completion: WeatherJSONParsingCompletion) {
         
-        let url     = "http://api.worldweatheronline.com/free/v2/weather.ashx"
-        let apiKey  = "5ed0d8b647f24d81a9f105723161603"
-        
-        // TODO: grab location from LocationMode so this string biz isn't necessary ////////
-        // required params:
-        // q = location
-        // num_of_days = number of days
-        // key = api key
-
-        let endpoint = "\(url)" + "?key=\(apiKey)" + "&q=\(location)" + "&num_of_days=1" + "&format=json"
-        //print(endpoint)
-        
-        ///////////////////////////////////////////////////////////////////////////////////
+        let url         = "http://api.worldweatheronline.com/free/v2/weather.ashx"
+        let apiKey      = "5ed0d8b647f24d81a9f105723161603"
+        let endpoint    = "\(url)" + "?key=\(apiKey)" + "&q=\(location)" + "&num_of_days=1" + "&format=json"
         
         // set up the request
         let request         = NSMutableURLRequest(URL: NSURL(string: endpoint)!)
@@ -63,7 +53,6 @@ struct WeatherDatasource {
                 
                 let currentWeatherData = self.currentWeatherConditionsFromJSON(json)
                 completion(currentData: currentWeatherData)
-                //print(currentWeatherData)
                 
             } catch let exception {
                 fatalError("didn't work")

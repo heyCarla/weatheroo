@@ -26,7 +26,7 @@ struct WeatherDatasource {
 
     // TODO: make/refresh request every 10 minutes
     
-    mutating func makeWeatherDataRequest(location: City, completion: WeatherJSONParsingCompletion) {
+    func makeWeatherDataRequest(location: City, completion: WeatherJSONParsingCompletion) {
         
         let url         = "http://api.worldweatheronline.com/free/v2/weather.ashx"
         let apiKey      = "5ed0d8b647f24d81a9f105723161603"
@@ -38,7 +38,6 @@ struct WeatherDatasource {
         
         let session     = NSURLSession(configuration: .defaultSessionConfiguration())
         let dataTask    = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            
             guard let data = data where error == nil else {
                 
                 print("no data -- fail")
@@ -50,14 +49,16 @@ struct WeatherDatasource {
             let json: [String:AnyObject]
             do {
                 json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String: AnyObject]
-                print(json)
+//                print(json)
                 
                 guard let currentWeatherData = self.currentWeatherConditionsFromJSON(json) else {
                     print("error with json -- fail")
                     return
                 }
                 
-                completion(currentData: currentWeatherData)
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(currentData: currentWeatherData)
+                })
                 
             } catch let exception {
                 fatalError("didn't work")
@@ -69,6 +70,7 @@ struct WeatherDatasource {
         }
         
         dataTask.resume()
+        
     }
     
     

@@ -14,17 +14,14 @@ final class WeatherTableView: UITableView, UITableViewDelegate, UITableViewDataS
     private let cellReuseIdentifier = "cell"
     private var weatherData = [(city: City, data: WeatherConditions?)]()
     
-    
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: .Plain)
-        
-        
         
         weatherData.reserveCapacity(City.allValues.count)
         self.delegate   = self
         self.dataSource = self
         self.registerClass(WeatherTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        estimatedRowHeight = 85
+        estimatedRowHeight = 150
         rowHeight = UITableViewAutomaticDimension
         
     }
@@ -35,6 +32,8 @@ final class WeatherTableView: UITableView, UITableViewDelegate, UITableViewDataS
     
     func updateWithCity(city: City, data: WeatherConditions?) {
     
+        
+        
         self.beginUpdates()
         weatherData.append((city, data))
         let indexToInsert = NSIndexPath(forRow: weatherData.endIndex - 1, inSection: 0)
@@ -54,12 +53,12 @@ final class WeatherTableView: UITableView, UITableViewDelegate, UITableViewDataS
         let cell:WeatherTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! WeatherTableViewCell
         
         NSLog("cell for row \(indexPath.row)")
-        // TODO: set cell data
-        //print(weatherData[indexPath.row])
+
+        // TODO: check NSUserDefaults to see if city exists in favourites array & update if necessary
         
+        // set cell data
         let cellWeatherTuple = weatherData[indexPath.row]
         cell.updateWithWeatherData(cellWeatherTuple.data, city: cellWeatherTuple.city)
-        cell.contentView.backgroundColor = .yellowColor()
         
         return cell
     }

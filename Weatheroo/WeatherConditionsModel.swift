@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Foundation
-
 struct WeatherConditions {
     
     var city: City

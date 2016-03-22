@@ -8,7 +8,16 @@
 
 import Foundation
 
-// TODO:
-// * Humidity as a %
-// * Wind speed in km / h
-// * Barometric pressure
+struct LocationModelFactory {
+    
+    func getWeatherDataForLocation(location: LocationName) {
+        
+        var weatherDatasource = WeatherDatasource()
+        weatherDatasource.makeWeatherDataRequest(location.rawValue) { currentData in
+            
+            let currentData = currentData
+            print(currentData)
+        }
+
+    }
+}

@@ -19,7 +19,7 @@ enum ResultType {
 }
 
 //typealias WeatherDataCompletion = (result: ResultType) -> Void
-typealias WeatherJSONParsingCompletion  = (currentData: [String:AnyObject]) -> Void
+typealias WeatherJSONParsingCompletion  = (currentData: [String:AnyObject]?) -> Void
 
 struct WeatherDatasource {
     
@@ -31,6 +31,7 @@ struct WeatherDatasource {
         let url         = "http://api.worldweatheronline.com/free/v2/weather.ashx"
         let apiKey      = "5ed0d8b647f24d81a9f105723161603"
         let endpoint    = "\(url)" + "?key=\(apiKey)" + "&q=\(location.rawValue)" + "&num_of_days=1" + "&format=json"
+        //http://api.worldweatheronline.com/free/v2/weather.ashx?key=5ed0d8b647f24d81a9f105723161603&q=sydney&num_of_days=1&format=json
         
         // set up the request
         let request         = NSMutableURLRequest(URL: NSURL(string: endpoint)!)
@@ -38,34 +39,28 @@ struct WeatherDatasource {
         
         let session     = NSURLSession(configuration: .defaultSessionConfiguration())
         let dataTask    = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
+          
             guard let data = data where error == nil else {
                 
                 print("no data -- fail")
-                // TODO: handle error
-                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(currentData: nil)
+                })
                 return
             }
             
-            let json: [String:AnyObject]
-            do {
-                json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String: AnyObject]
-//                print(json)
-                
-                guard let currentWeatherData = self.currentWeatherConditionsFromJSON(json) else {
-                    print("error with json -- fail")
-                    return
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completion(currentData: currentWeatherData)
-                })
-                
-            } catch let exception {
-                fatalError("didn't work")
-                
-                // TODO: handle error (invalid json?)
-            }
+            let json = try? NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String: AnyObject]
             
+            if let jsonData = json, currentWeatherModel = self.currentWeatherConditionsFromJSON(jsonData) {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(currentData: currentWeatherModel)
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(currentData: nil)
+                })
+            }
+
             // TODO: cache the response
         }
         

@@ -16,15 +16,18 @@ struct WeatherConditionsModelFactory {
         
         let weatherDatasource = WeatherDatasource()
         weatherDatasource.makeWeatherDataRequest(location) { currentData in
+            guard let data = currentData else {
+                completion(conditions: nil)
+                return
+            }
             
-            let currentData = currentData
-            let weatherConditions  = self.weatherConditionsModelDataForLocation(location, data: currentData)
+            let weatherConditions  = self.weatherConditionsModelDataForLocation(location, data: data)
             completion(conditions: weatherConditions)
         }
     }
     
     @warn_unused_result
-    private func weatherConditionsModelDataForLocation(location: City, data: [String: AnyObject]) -> WeatherConditions? {
+    func weatherConditionsModelDataForLocation(location: City, data: [String: AnyObject]) -> WeatherConditions? {
         
         guard let actualTemp = data["temp_C"] as? String,
             feelsLike = data["FeelsLikeC"] as? String,

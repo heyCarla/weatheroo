@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WeatherViewController.swift
 //  Weatheroo
 //
 //  Created by Carla Alexander on 2016-03-21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class WeatherViewController: UIViewController {
 
     private let weatherFactory = WeatherConditionsModelFactory()
     

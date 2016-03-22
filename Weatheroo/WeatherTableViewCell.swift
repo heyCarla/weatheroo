@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class WeatherTableViewCell: UITableViewCell {
+final class WeatherTableViewCell: UITableViewCell {
     
     private let weatherIcon         = UIImageView()
     private let cityLabel           = UILabel()

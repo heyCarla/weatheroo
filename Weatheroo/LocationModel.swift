@@ -23,22 +23,18 @@ enum City: String {
 
 struct Location {
     
-    var name: City
+    let name: City
     var isFavourite: Bool
     
     init(name: City, isFavourite: Bool) {
      
-        self.name               = name
-        self.isFavourite        = isFavourite
-           }
+        self.name           = name
+        self.isFavourite    = isFavourite
+    }
     
     mutating func updateFavouriteState() {
         
         // set location as user favourite if not already set
-        if self.isFavourite == true {
-            self.isFavourite = false
-        } else {
-            self.isFavourite = true
-        }
+        isFavourite = !isFavourite
     }
 }

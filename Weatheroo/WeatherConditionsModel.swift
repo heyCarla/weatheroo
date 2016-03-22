@@ -10,15 +10,15 @@ import Foundation
 
 struct WeatherConditions {
     
-    var city: City
-    var actualTemp: String
-    var description: String
-    var feelsLikeTemp: String
-    var precipitation: String
-    var iconURL: String
-    var humidityAsPercent: String
-    var windSpeedInKm: String
-    var barometricPressure: String
+    let city: City
+    let actualTemp: String
+    let description: String
+    let feelsLikeTemp: String
+    let precipitation: String
+    let iconURL: String
+    let humidityAsPercent: String
+    let windSpeedInKm: String
+    let barometricPressure: String
     
     init(city: City, actualTemp: String, description: String, feelsLikeTemp: String, precipitation: String, iconURL: String, humidity: String, windSpeed: String, pressure: String) {
         

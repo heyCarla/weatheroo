@@ -8,17 +8,6 @@
 
 import Foundation
 
-enum WeatherDatasourceError: ErrorType {
-    
-    // TODO: add NSError failure types and implement
-}
-
-enum ResultType {
-    case Success(result: String)
-    case Failure(result: String)
-}
-
-//typealias WeatherDataCompletion = (result: ResultType) -> Void
 typealias WeatherJSONParsingCompletion  = (currentData: [String:AnyObject]?) -> Void
 
 struct WeatherDatasource {
@@ -31,7 +20,6 @@ struct WeatherDatasource {
         let url         = "http://api.worldweatheronline.com/free/v2/weather.ashx"
         let apiKey      = "5ed0d8b647f24d81a9f105723161603"
         let endpoint    = "\(url)" + "?key=\(apiKey)" + "&q=\(location.rawValue)" + "&num_of_days=1" + "&format=json"
-        //http://api.worldweatheronline.com/free/v2/weather.ashx?key=5ed0d8b647f24d81a9f105723161603&q=sydney&num_of_days=1&format=json
         
         // set up the request
         let request         = NSMutableURLRequest(URL: NSURL(string: endpoint)!)
@@ -78,7 +66,6 @@ struct WeatherDatasource {
             return nil
         }
         
-//        print(currentConditions)
         return currentDict
     }
 }

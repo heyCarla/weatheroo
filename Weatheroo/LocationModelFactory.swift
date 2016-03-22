@@ -10,13 +10,17 @@ import Foundation
 
 struct LocationModelFactory {
     
-    func getWeatherDataForLocation(location: LocationName) {
+    func getWeatherDataForLocation(location: LocationName.RawValue) {
         
         var weatherDatasource = WeatherDatasource()
-        weatherDatasource.makeWeatherDataRequest(location.rawValue) { currentData in
+        weatherDatasource.makeWeatherDataRequest(location) { currentData in
             
             let currentData = currentData
             print(currentData)
+            
+            // TODO: set data in LocationModel
+            
+            
         }
 
     }

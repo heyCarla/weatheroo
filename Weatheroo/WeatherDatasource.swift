@@ -18,7 +18,7 @@ enum ResultType {
     case Failure(result: String)
 }
 
-typealias WeatherDataCompletion = (result: ResultType) -> Void
+//typealias WeatherDataCompletion = (result: ResultType) -> Void
 typealias WeatherJSONParsingCompletion  = (currentData: [String:AnyObject]) -> Void
 
 struct WeatherDatasource {
@@ -26,11 +26,11 @@ struct WeatherDatasource {
 
     // TODO: make/refresh request every 10 minutes
     
-    mutating func makeWeatherDataRequest(location: String, completion: WeatherJSONParsingCompletion) {
+    mutating func makeWeatherDataRequest(location: City, completion: WeatherJSONParsingCompletion) {
         
         let url         = "http://api.worldweatheronline.com/free/v2/weather.ashx"
         let apiKey      = "5ed0d8b647f24d81a9f105723161603"
-        let endpoint    = "\(url)" + "?key=\(apiKey)" + "&q=\(location)" + "&num_of_days=1" + "&format=json"
+        let endpoint    = "\(url)" + "?key=\(apiKey)" + "&q=\(location.rawValue)" + "&num_of_days=1" + "&format=json"
         
         // set up the request
         let request         = NSMutableURLRequest(URL: NSURL(string: endpoint)!)
@@ -50,8 +50,13 @@ struct WeatherDatasource {
             let json: [String:AnyObject]
             do {
                 json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String: AnyObject]
+                print(json)
                 
-                let currentWeatherData = self.currentWeatherConditionsFromJSON(json)
+                guard let currentWeatherData = self.currentWeatherConditionsFromJSON(json) else {
+                    print("error with json -- fail")
+                    return
+                }
+                
                 completion(currentData: currentWeatherData)
                 
             } catch let exception {
@@ -69,9 +74,14 @@ struct WeatherDatasource {
     
     // MARK: JSON Parsing Method(s)
     
-    func currentWeatherConditionsFromJSON(json: [String:AnyObject]) -> [String:AnyObject] {
+    func currentWeatherConditionsFromJSON(json: [String:AnyObject]) -> [String:AnyObject]? {
         
-        let currentConditions = json["data"]!["current_condition"]!![0] as! [String:AnyObject]
-        return currentConditions
+        guard let currentConditions = json["data"]?["current_condition"] as? [[String:AnyObject]], currentDict = currentConditions.first else {
+            print("failure!!")
+            return nil
+        }
+        
+//        print(currentConditions)
+        return currentDict
     }
 }

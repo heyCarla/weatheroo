@@ -21,9 +21,8 @@ final class WeatherTableView: UITableView, UITableViewDelegate, UITableViewDataS
         self.delegate   = self
         self.dataSource = self
         self.registerClass(WeatherTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        estimatedRowHeight = 150
+        estimatedRowHeight = 200
         rowHeight = UITableViewAutomaticDimension
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,8 +31,6 @@ final class WeatherTableView: UITableView, UITableViewDelegate, UITableViewDataS
     
     func updateWithCity(city: City, data: WeatherConditions?) {
     
-        
-        
         self.beginUpdates()
         weatherData.append((city, data))
         let indexToInsert = NSIndexPath(forRow: weatherData.endIndex - 1, inSection: 0)

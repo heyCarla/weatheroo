@@ -28,7 +28,6 @@ class WeatherTableViewCell: UITableViewCell {
 
         displayWeatherIcon()
         displayCellLabels()
-//        showAdditionalInfoLabels() //
         setCellLayoutConstraints()
     }
     
@@ -41,13 +40,13 @@ class WeatherTableViewCell: UITableViewCell {
         imageRequestTask?.cancel()
         
         cityLabel.text          = city.rawValue
-        actualTempLabel.text    = weatherConditions?.actualTemp
-        descriptionLabel.text   = weatherConditions?.description
-        feelsLikeLabel.text     = "Feels like \(weatherConditions?.feelsLikeTemp)"
-        precipitationLabel.text = "Prec. \(weatherConditions?.precipitation)"
-        humidityLabel.text      = weatherConditions?.humidityAsPercent
-        windSpeedLabel.text     = weatherConditions?.windSpeedInKm
-        pressureLabel.text      = weatherConditions?.barometricPressure
+        actualTempLabel.text    = "22C"//"\(weatherConditions?.actualTemp)\u{00B0} C"
+        descriptionLabel.text   = "Partly Cloudy"//"\(weatherConditions?.description)"
+        feelsLikeLabel.text     = "Feels like 20C"//"Feels like \(weatherConditions?.feelsLikeTemp)"
+        precipitationLabel.text = "Prec. 0.0mm"//"Prec. \(weatherConditions?.precipitation)mm"
+        humidityLabel.text      = "\(weatherConditions?.humidityAsPercent)"
+        windSpeedLabel.text     = "\(weatherConditions?.windSpeedInKm)km"
+        pressureLabel.text      = "\(weatherConditions?.barometricPressure)"
         
         if let iconURL = weatherConditions?.iconURL, imageURL = NSURL(string: iconURL) {
             print("iconURL is \(iconURL)")
@@ -68,28 +67,23 @@ class WeatherTableViewCell: UITableViewCell {
     
     private func displayCellLabels() {
         
-        cityLabel.text = "Sydney"
         cityLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 25)
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(cityLabel)
         
-        actualTempLabel.text = "22\u{00B0}C"
-        actualTempLabel.font = UIFont(name: "HelveticaNeue-Light", size: 22)
+        actualTempLabel.font = UIFont(name: "HelveticaNeue-Light", size: 25)
         actualTempLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(actualTempLabel)
         
-        descriptionLabel.text = "Partly Cloudy"
-        descriptionLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
+        descriptionLabel.font = UIFont(name: "HelveticaNeue-Light", size: 19)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(descriptionLabel)
         
-        feelsLikeLabel.text = "Feels like: 25\u{00B0}"
-        feelsLikeLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        feelsLikeLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         feelsLikeLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(feelsLikeLabel)
 
-        precipitationLabel.text = "Prec. 0.0mm"
-        precipitationLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        precipitationLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         precipitationLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(precipitationLabel)
     }
@@ -108,8 +102,8 @@ class WeatherTableViewCell: UITableViewCell {
     
     private func displayWeatherIcon() {
         
-        weatherIcon.backgroundColor = .blueColor()
-        weatherIcon.translatesAutoresizingMaskIntoConstraints = false
+        weatherIcon.backgroundColor                             = .blueColor()
+        weatherIcon.translatesAutoresizingMaskIntoConstraints   = false
         self.contentView.addSubview(weatherIcon)
     }
     
@@ -129,15 +123,15 @@ class WeatherTableViewCell: UITableViewCell {
         ]
         
         // vertical
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[icon(60)]", options: [], metrics: nil, views: uiElementsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[tempInC]-|", options: [], metrics: nil, views: uiElementsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[description]-[feelsLike]-|", options: [], metrics: nil, views: uiElementsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[description]-[precipitation]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[icon(50)]", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[tempInC(30)]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[description(20)]-[feelsLike(12)]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[city(20)]-[description(20)]-[precipitation(12)]-|", options: [], metrics: nil, views: uiElementsDict))
 
         // horizontal
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(60)]-[city]-|", options: [], metrics: nil, views: uiElementsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(60)]-[tempInC(80)]-[description]-|", options: [], metrics: nil, views: uiElementsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(60)]-[tempInC(80)]-[feelsLike]-[precipitation]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(50)]-[city]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(50)]-[tempInC(80)]-[description]-|", options: [], metrics: nil, views: uiElementsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[icon(50)]-[tempInC(80)]-[feelsLike(80)]-[precipitation]-|", options: [], metrics: nil, views: uiElementsDict))
     }
     
 }
